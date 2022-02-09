@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.camunda.bpm.example</groupId>
+  <artifactId>jsr310-time-test</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+
+<!-- set the target version of Camunda Platform here. -->
+    <version.camunda>7.15.8-ee</version.camunda>
+    <version.javax-servlet-api>4.0.1</version.javax-servlet-api>
+<!--    <version.jackson>2.12.1</version.jackson>-->
+    <jackson-configurator.version>1.0</jackson-configurator.version>
+    <version.maven-war-plugin>2.6</version.maven-war-plugin>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.camunda.bpm</groupId>
+        <artifactId>camunda-bom</artifactId>
+        <version>${version.camunda}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.camunda.bpm</groupId>
+      <artifactId>camunda-engine</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${version.javax-servlet-api}</version>
+      <scope>provided</scope>
+    </dependency>
+
+<!--    This dependency can be omitted, it is included through: -->
+<!--    org.camunda.bpm.example:jackson-configurator:${jackson-configurator.version} -->
+<!--    <dependency>-->
+<!--      <groupId>com.fasterxml.jackson.core</groupId>-->
+<!--      <artifactId>jackson-annotations</artifactId>-->
+<!--      <version>${version.jackson}</version>-->
+<!--      <scope>provided</scope>-->
+<!--    </dependency>-->
+
+    <dependency>
+      <groupId>org.camunda.bpm.example</groupId>
+      <artifactId>jackson-configurator</artifactId>
+      <version>${jackson-configurator.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>${version.maven-war-plugin}</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+
