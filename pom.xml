@@ -13,8 +13,14 @@
 <!-- set the target version of Camunda Platform here. -->
     <version.camunda>7.15.8-ee</version.camunda>
     <version.javax-servlet-api>4.0.1</version.javax-servlet-api>
-<!--    <version.jackson>2.12.1</version.jackson>-->
-    <jackson-configurator.version>1.0</jackson-configurator.version>
+<!--    Note carefully: to avoid conflicts, the <spin.version> property must be set to exactly -->
+<!--    match the version of spin artifacts used by the target Camunda Platform version.-->
+<!--    For example: Camunda Platform 7.15.8-ee uses spin version 1.10.2 artifacts.-->
+    <spin.version>1.10.2</spin.version>
+<!--    Note carefully: to avoid conflicts, the <jackson.version> property must be set to exactly -->
+<!--    match the version of jackson artifacts used by the target Camunda Platform version.  -->
+<!--    For example: Camunda Platform 7.15.8-ee uses jackson version 2.12.1 artifacts -->
+    <jackson.version>2.12.1</jackson.version>
     <version.maven-war-plugin>2.6</version.maven-war-plugin>
   </properties>
 
@@ -27,6 +33,13 @@
         <scope>import</scope>
         <type>pom</type>
       </dependency>
+      <dependency>
+        <groupId>org.camunda.spin</groupId>
+        <artifactId>camunda-spin-bom</artifactId>
+        <version>${spin.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -34,6 +47,11 @@
     <dependency>
       <groupId>org.camunda.bpm</groupId>
       <artifactId>camunda-engine</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.camunda.spin</groupId>
+      <artifactId>camunda-spin-dataformat-json-jackson</artifactId>
       <scope>provided</scope>
     </dependency>
 
@@ -44,20 +62,37 @@
       <scope>provided</scope>
     </dependency>
 
-<!--    This dependency can be omitted, it is included through: -->
-<!--    org.camunda.bpm.example:jackson-configurator:${jackson-configurator.version} -->
 <!--    <dependency>-->
 <!--      <groupId>com.fasterxml.jackson.core</groupId>-->
 <!--      <artifactId>jackson-annotations</artifactId>-->
-<!--      <version>${version.jackson}</version>-->
+<!--      <version>${jackson.version}</version>-->
 <!--      <scope>provided</scope>-->
 <!--    </dependency>-->
-
     <dependency>
-      <groupId>org.camunda.bpm.example</groupId>
-      <artifactId>jackson-configurator</artifactId>
-      <version>${jackson-configurator.version}</version>
-      <scope>provided</scope>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-joda</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+        </exclusion>
+      </exclusions>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+        </exclusion>
+      </exclusions>
+      <version>${jackson.version}</version>
     </dependency>
   </dependencies>
 
