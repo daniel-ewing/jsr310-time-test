@@ -1,0 +1,11 @@
+<module xmlns="urn:jboss:module:1.0" name="com.fasterxml.jackson.datatype.jackson-datatype-jsr310" slot="2.12.1" >
+  <resources>
+    <resource-root path="jackson-datatype-jsr310-2.12.1.jar" />
+  </resources>
+
+  <dependencies>
+    <module name="com.fasterxml.jackson.core.jackson-annotations" slot="2.12.1" />
+    <module name="com.fasterxml.jackson.core.jackson-core" slot="2.12.1" />
+    <module name="com.fasterxml.jackson.core.jackson-databind" slot="2.12.1" />
+  </dependencies>
+</module>
