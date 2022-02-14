@@ -7,9 +7,9 @@ import org.camunda.spin.impl.json.jackson.format.JacksonJsonDataFormat;
 import org.camunda.spin.spi.DataFormatConfigurator;
 
 public class JacksonConfigurator implements DataFormatConfigurator<JacksonJsonDataFormat> {
-//
-//  public JacksonConfigurator() {
-//  }
+
+  public JacksonConfigurator() {
+  }
 
   @Override
   public Class<JacksonJsonDataFormat> getDataFormatClass() {
