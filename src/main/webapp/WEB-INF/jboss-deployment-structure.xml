@@ -6,7 +6,7 @@
             <subsystem name="jaxrs"/>
         </exclude-subsystems>
         <dependencies>
-            <module name="com.fasterxml.jackson.core.jackson-databind" />
+            <module name="com.fasterxml.jackson.core.jackson-databind" slot="2.12.1" />
 <!--            <module name="com.fasterxml.jackson.core.jackson-annotations"  services="import" />-->
             <module name="com.fasterxml.jackson.datatype.jackson-datatype-joda" slot="2.12.1" />
             <module name="com.fasterxml.jackson.datatype.jackson-datatype-jsr310" slot="2.12.1" />
