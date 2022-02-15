@@ -3,7 +3,7 @@
 <process-application
   xmlns="http://www.camunda.org/schema/1.0/ProcessApplication">
 
-  <process-archive name="jackson-annotation-example">
+  <process-archive name="jsr310-time-test">
     <process-engine>default</process-engine>
     <properties>
       <property name="isDeleteUponUndeploy">false</property>
